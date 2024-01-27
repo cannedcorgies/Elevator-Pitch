@@ -12063,10 +12063,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4897410301461427663, guid: 455fa718d370c4d4b8199103b631d0ab, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5847801338762847819, guid: 455fa718d370c4d4b8199103b631d0ab, type: 3}
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 1421538448}
+    - target: {fileID: 7335699358095812247, guid: 455fa718d370c4d4b8199103b631d0ab, type: 3}
+      propertyPath: click
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7335699358095812247, guid: 455fa718d370c4d4b8199103b631d0ab, type: 3}
       propertyPath: crosshair
       value: 
