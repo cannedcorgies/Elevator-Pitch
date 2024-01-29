@@ -21,8 +21,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
         
-        var dir = new Vector3(Input.GetAxis("Horizontal"), 0 ,Input.GetAxis("Vertical")).normalized;
-        //rb.AddRelativeForce(dir * moveSpeed * Time.deltaTime);
+        var dir = new Vector3(Input.GetAxis("Horizontal"), 0 , Input.GetAxis("Vertical")).normalized;
 
         rb.MovePosition(transform.position 
             + (transform.forward * Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime) 

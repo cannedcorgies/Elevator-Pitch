@@ -12065,12 +12065,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4897410301461427663, guid: 455fa718d370c4d4b8199103b631d0ab, type: 3}
       propertyPath: moveSpeed
-      value: 10
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 5847801338762847819, guid: 455fa718d370c4d4b8199103b631d0ab, type: 3}
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 1421538448}
+    - target: {fileID: 6887197564569139510, guid: 455fa718d370c4d4b8199103b631d0ab, type: 3}
+      propertyPath: pullForce
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887197564569139510, guid: 455fa718d370c4d4b8199103b631d0ab, type: 3}
+      propertyPath: turnProximity
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7335699358095812247, guid: 455fa718d370c4d4b8199103b631d0ab, type: 3}
       propertyPath: click
       value: 0
@@ -12079,6 +12087,10 @@ PrefabInstance:
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 558636506}
+    - target: {fileID: 7371494824567092540, guid: 455fa718d370c4d4b8199103b631d0ab, type: 3}
+      propertyPath: rotatePower
+      value: 75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
