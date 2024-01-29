@@ -40,6 +40,7 @@ public class PushAndPull : MonoBehaviour
 
         cam = Camera.main;
 
+        // movement components
         fpc = cam.gameObject.GetComponent<FirstPersonCamera>();
         movement = GetComponent<Movement>();
         cg = GetComponent<CustomGravity>();
@@ -48,6 +49,7 @@ public class PushAndPull : MonoBehaviour
         
         crosshairImage = crosshair.GetComponent<Image>();
 
+        // all actions possible
         ga = GetComponent<GrappleAction>();
         ra = GetComponent<RotateAction>();
         sa = GetComponent<SlideAction>();
@@ -59,7 +61,9 @@ public class PushAndPull : MonoBehaviour
     void Update()
     {
 
-        if (!imHere) {
+        // ==== ACTION MANAGEMENT ====
+
+        if (!imHere) {          // first frame, not 0th frame - prevents error and i don't know why
 
             imHere = true;
 
@@ -72,16 +76,19 @@ public class PushAndPull : MonoBehaviour
 
         BehaviorManagement();
         
-        RaycastHit hit;
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit)) {
+        // ==== COMPONENT DETECTION ====
+
+        RaycastHit hit;
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);    // cast ray from camera
+
+        if (Physics.Raycast(ray, out hit)) {    // if somethin hit...
 
             var hitObject = hit.transform.gameObject;
 
-            var behaviorFound = FindABehavior(hitObject);
+            var behaviorFound = FindABehavior(hitObject);   // see if hit object has a valid component
 
-            // change crosshair color based on whether or not object has behavior
+            // ==== CROSSHAIR COLORU ====
             if (behaviorFound) {
 
                 crosshairImage.color = Color.red;
@@ -100,6 +107,9 @@ public class PushAndPull : MonoBehaviour
 
     }
 
+    // FIND A BEHAVIOUR
+    //  - check if object passed has a valid
+    //      component
     bool FindABehavior(GameObject hitObject) {
 
         var objectFound = false;
@@ -178,6 +188,9 @@ public class PushAndPull : MonoBehaviour
 
     }
 
+    // DISABLE CONTROL 
+    //  - disable movement options for better 
+    //      manipulation of objects
     public void DisableControl(bool move, bool cam, bool grav, bool col = false) {
 
         movement.enabled = move;
@@ -193,6 +206,8 @@ public class PushAndPull : MonoBehaviour
 
     }
 
+    // ENABLE CONTROL 
+    //  - restore control/movement options
     public void EnableControl() {
 
         behaviorActivated = false;
@@ -217,6 +232,8 @@ public class PushAndPull : MonoBehaviour
 
     }
 
+    // CAMERA LOOK AT TARGET
+    //  - void -- not used anymore
     public void CameraLookAtTarget() {
 
         Vector3 relativePos = target.transform.position - cam.gameObject.transform.position;
