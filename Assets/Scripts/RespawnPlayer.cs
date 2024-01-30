@@ -10,9 +10,9 @@ public class RespawnPlayer : MonoBehaviour
         private FirstPersonCamera fpc;
     private CustomGravity cg;
 
-    public float respawnDepth = -100f;
-        public bool fallDeath = true;
-    public float respawnDistance = 1000f;
+    public float respawnDepth = -100f;          // fall distance for death
+        public bool fallDeath = true;           
+    public float respawnDistance = 1000f;       // how far away from respawn point for death 
         public bool distanceDeath = false;
     
     public Vector3 direction = new Vector3(0, 0, 0);

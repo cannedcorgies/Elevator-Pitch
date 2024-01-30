@@ -9,13 +9,11 @@ public class GrappleAction : MonoBehaviour
 
     public GameObject target;
 
-    [SerializeField] private PushAndPull pap;
+    private PushAndPull pap;
 
-    [SerializeField] private Vector2 mousePos;
-    [SerializeField] private float mousePosY_last;
-    [SerializeField] private float displacement;
     public float sensitivity = 0.75f;
 
+    // variables for determining when player shifts gravity towards grapple point
     public float pullForce = 10f;
     public float gravProximity = 2f;
         public float turnProximity = 20f;
@@ -23,12 +21,13 @@ public class GrappleAction : MonoBehaviour
     public float gravProxRatio = 0.5f;
         [SerializeField] private float gravBubble;
 
+    // variables for determining closeness to gravity shift
     [SerializeField] private float distanceTotal;
     [SerializeField] private float distanceCurr;
     [SerializeField] private float distanceFraction;
 
+    // interpolation of rotation in direction of gravity shift
     [SerializeField] private Quaternion savedRotation;
-        private Transform savedTransform;
     [SerializeField] private Quaternion targetRotation;
     [SerializeField] private Quaternion middleRotation;
 
@@ -50,21 +49,27 @@ public class GrappleAction : MonoBehaviour
 
         if (activated) {
             
-            distanceCurr = Vector3.Distance(target.transform.position, transform.position) - (gravProximity + 5f);
+            // ==== ROTATION INTERPOLATION
+            distanceCurr = Vector3.Distance(target.transform.position, transform.position) - (gravProximity + 5f);  // get current distance to point before you start turning
             
-            if (distanceCurr <= turnProximity) { 
+            if (distanceCurr <= turnProximity) {    // if you go past the turning threshold... 
 
                 distanceFraction = 1.0f - (distanceCurr/turnProximity);
                 middleRotation = Quaternion.Lerp(savedRotation, targetRotation, distanceFraction);
 
-                transform.rotation = middleRotation;
+                transform.rotation = middleRotation;    // ..start turning
             
             }
 
+            // ==== PULLING ACTION
             var move = Input.GetAxis("Mouse Y");
 
             if (Mathf.Abs(move) > sensitivity) {
 
+                // imma be real with you: i see that the conditionals here lead to the exact same line of code, but
+                //  i don't remember why i separated them; i just remember i had a reason
+                //  but also
+                //  i'm a little bit quirky
                 if (move < 0 && Vector3.Distance(transform.position, target.transform.position) >= gravProximity) {
 
                     transform.position = Vector3.MoveTowards(transform.position, target.transform.position, -move * pullForce);
@@ -75,21 +80,12 @@ public class GrappleAction : MonoBehaviour
 
                 }
 
-                if (distanceFraction >= 1f) {
-
-                    inProximity = true;
-
-                } else {
-
-                    inProximity = false;
-
-                }
-
             }
 
-            if (distanceCurr <= gravBubble) {
+            // ==== GRAVITY SHIFTING
+            if (distanceCurr <= gravBubble) {   // if within a certain range of grapple point...
 
-                inProximity = true;
+                inProximity = true;     // ..gravity change
 
             } else {
 
@@ -106,18 +102,15 @@ public class GrappleAction : MonoBehaviour
         
         if (activated) {
             
-            if (!inProximity) {
+            if (!inProximity) {     // if found to be sufficiently close to grapple point...
 
-                transform.rotation = savedRotation;
+                transform.rotation = savedRotation;     // ..snap to object's direction
 
-            } else { transform.rotation = targetRotation; }
-
-            activated = false;
-
-            Debug.Log(" -- BYEBYE FROM GAPPLE ACTION");
-            Debug.Log("transform UP from disable! " + transform.up);
+            } else { transform.rotation = targetRotation; } // else, revert to original
 
             activated = false;
+
+            activated = false;      // i'm a stupid coder so of course i set activated to false twice in a row
 
         }
 
@@ -129,28 +122,12 @@ public class GrappleAction : MonoBehaviour
         distanceTotal = Vector3.Distance(target.transform.position, transform.position) - (gravProximity + 5f);
 
         pap.DisableControl(false, false, false);
-        mousePosY_last = mousePos.y;
         
+        // first to return to if let go prematurely, second to interpolate to
         savedRotation = transform.rotation;
-            savedTransform = transform;
-
         targetRotation = target.transform.rotation;
+
         activated = true;
-
-        Debug.Log("HI FROM GRAPPLE ACTION");
-
-    }
-
-    float CalculateAngle(float angle) {
-
-        if(angle <= 180f)
-        {
-            return angle;
-        }
-        else
-        {
-            return angle - 360f;
-        }
 
     }
 

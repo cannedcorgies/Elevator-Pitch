@@ -1,6 +1,12 @@
 //// CREDITS ////
+//
 //  - inspired by mixandjam's "Better Jumping"
 //      - https://github.com/mixandjam/Celeste-Movement/blob/master/Assets/Scripts/BetterJumping.cs
+//
+//// REQUIREMENTS ////
+//
+//  - rigidbody
+//  - groundcheck
 
 using System.Collections;
 using System.Collections.Generic;
@@ -41,6 +47,7 @@ public class CustomGravity : MonoBehaviour
         
     }
 
+    //  ==== BOUNCING BEHAVIOR
     void OnCollisionEnter(Collision col) {
         
         rb.velocity -= Vector3.Reflect(col.relativeVelocity * bounciness, col.contacts[0].normal);

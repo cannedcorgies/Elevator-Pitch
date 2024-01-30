@@ -1,3 +1,14 @@
+//// NOTES ////
+//
+//  - how can we make this action more predictable?
+//      - is the back and forth relative to player
+//          position intuitive?
+//      - should we instead lock the sliding to an axis?
+//
+//  - also, think of more organic ways to limit the sliding
+//      - e.g. stops sliding if it collides with object
+//      - e.g. player stays on object
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +44,7 @@ public class SlideAction : MonoBehaviour
             var dir = transform.forward * move * Time.deltaTime * slidePower;
             target.transform.position += dir;
 
+            // ==== LIMIT DISPLACEMENT
             target.transform.position = new Vector3 (Mathf.Clamp(target.transform.position.x, maxVector.x - maxDistance, maxVector.x + maxDistance),
                                                         Mathf.Clamp(target.transform.position.y, maxVector.y - maxDistance, maxVector.y + maxDistance),
                                                         Mathf.Clamp(target.transform.position.z, maxVector.z - maxDistance, maxVector.z + maxDistance));
@@ -59,6 +71,7 @@ public class SlideAction : MonoBehaviour
         activated = true;
 
         var slidey = target.gameObject.GetComponent<SlideComponent>();
+        // basically, max distance defined as a square around origin
         maxVector = slidey.startPos;
         maxDistance = slidey.maxDistance;
 

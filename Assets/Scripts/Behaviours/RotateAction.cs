@@ -29,7 +29,7 @@ public class RotateAction : MonoBehaviour
 
         if (activated) {
 
-            target.transform.RotateAround(target.transform.position, transform.right, move * rotatePower * Time.deltaTime);
+            target.transform.RotateAround(target.transform.position, transform.right, move * rotatePower * Time.deltaTime);     // rotate up and down
 
         }
         
