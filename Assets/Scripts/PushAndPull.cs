@@ -23,6 +23,7 @@ public class PushAndPull : MonoBehaviour
         public RotateAction ra;
         public SlideAction sa;
         public ScaleAction sca;
+        public BouncepadAction ba;
     
     public Camera cam;
         public GameObject cameraPivot;
@@ -54,6 +55,7 @@ public class PushAndPull : MonoBehaviour
         ra = GetComponent<RotateAction>();
         sa = GetComponent<SlideAction>();
         sca = GetComponent<ScaleAction>();
+        ba = GetComponent<BouncepadAction>();
 
     }
 
@@ -71,6 +73,7 @@ public class PushAndPull : MonoBehaviour
             ra.enabled = false;
             sa.enabled = false;
             sca.enabled = false;
+            ba.enabled = false;
 
         }
 
@@ -178,6 +181,22 @@ public class PushAndPull : MonoBehaviour
 
         }
 
+        // if bouncepad component found
+        if (hitObject.GetComponent<BouncepadComponent>()) {
+
+            objectFound = true;
+            target = hitObject;
+
+            if (Input.GetMouseButtonDown(click)) {
+
+                behaviorActivated = true;
+                ba.target = target;
+                ba.enabled = true;
+
+            }
+
+        }
+
 
         // was a behavior found?
         if (objectFound || behaviorActivated) {
@@ -226,6 +245,7 @@ public class PushAndPull : MonoBehaviour
             ra.enabled = false;
             sa.enabled = false;
             sca.enabled = false;
+            ba.enabled = false;
             EnableControl();
 
         }

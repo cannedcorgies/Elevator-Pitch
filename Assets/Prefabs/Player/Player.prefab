@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 7371494824567092540}
   - component: {fileID: 5725323097870316119}
   - component: {fileID: 58874553449260395}
+  - component: {fileID: 645362624557430727}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -267,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c322b4cc1da5bc94aa123ef1f218b9e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 350
+  moveSpeed: 30
 --- !u!114 &3886103687076506393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 0}
+  cam: {fileID: 0}
   respawnDepth: -100
   fallDeath: 0
   respawnDistance: 500
@@ -333,7 +335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activated: 0
   imHere: 0
-  click: 1
+  click: 0
   fpc: {fileID: 0}
   movement: {fileID: 0}
   cg: {fileID: 0}
@@ -364,10 +366,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activated: 0
   target: {fileID: 0}
-  pap: {fileID: 0}
-  mousePos: {x: 0, y: 0}
-  mousePosY_last: 0
-  displacement: 0
   sensitivity: 0.75
   pullForce: 0.25
   gravProximity: 2
@@ -434,6 +432,24 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   maxScale: 25
   minScale: 1
+--- !u!114 &645362624557430727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2871040534754038699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2b2f9d8d6c119429e2d7b76a63b062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activated: 0
+  pap: {fileID: 0}
+  target: {fileID: 0}
+  slidePower: 50
+  maxDistance: 20
+  maxVector: {x: 0, y: 0, z: 0}
 --- !u!1 &4631797902619088243
 GameObject:
   m_ObjectHideFlags: 0
