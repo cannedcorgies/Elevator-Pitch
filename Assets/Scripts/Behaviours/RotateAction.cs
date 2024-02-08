@@ -10,7 +10,11 @@ public class RotateAction : MonoBehaviour
 
     public GameObject target;
 
-    public float rotatePower = 1f;
+    public float rotatePower = 5f;
+        public float rotateThresh = 50f;
+
+    private float pos;
+        private float savedPos;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +22,9 @@ public class RotateAction : MonoBehaviour
 
         activated = false;
         pap = GetComponent<PushAndPull>();
+
+        ResetMouse();
+
         
     }
 
@@ -27,12 +34,38 @@ public class RotateAction : MonoBehaviour
 
         var move = Input.GetAxis("Mouse Y");
 
-        if (activated) {
+        pos += (move * rotatePower);
+        
+
+        /*if (activated) {
 
             target.transform.RotateAround(target.transform.position, transform.right, move * rotatePower * Time.deltaTime);     // rotate up and down
 
+        }*/
+
+        if (activated) {
+
+            if (pos >= savedPos + rotateThresh) {
+
+                target.transform.RotateAround(target.transform.position, new Vector3(-1, 0, -1), 45f);
+                ResetMouse();
+
+            } else if (pos <= savedPos - rotateThresh) {
+
+                target.transform.RotateAround(target.transform.position, new Vector3(-1, 0, -1), -45f);
+                ResetMouse();
+
+            }
+
         }
         
+    }
+
+    void ResetMouse() {
+
+        pos = 0f;
+        savedPos = 0f;
+
     }
 
     void OnDisable()
@@ -51,6 +84,10 @@ public class RotateAction : MonoBehaviour
 
         pap.DisableControl(false, false, false);
         activated = true;
+
+        ResetMouse();
+
+        Debug.Log(target.transform.position - transform.position);
 
     }
 

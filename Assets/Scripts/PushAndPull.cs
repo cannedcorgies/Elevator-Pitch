@@ -29,7 +29,7 @@ public class PushAndPull : MonoBehaviour
         public GameObject cameraPivot;
 
     public GameObject crosshair;
-        public Image crosshairImage;
+        private Image crosshairImage;
 
     [SerializeField] public GameObject target;
 
