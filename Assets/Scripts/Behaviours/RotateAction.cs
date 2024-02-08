@@ -16,6 +16,8 @@ public class RotateAction : MonoBehaviour
     private float pos;
         private float savedPos;
 
+    [SerializeField] private Vector3 rotateAxis;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,22 +39,16 @@ public class RotateAction : MonoBehaviour
         pos += (move * rotatePower);
         
 
-        /*if (activated) {
-
-            target.transform.RotateAround(target.transform.position, transform.right, move * rotatePower * Time.deltaTime);     // rotate up and down
-
-        }*/
-
         if (activated) {
 
             if (pos >= savedPos + rotateThresh) {
 
-                target.transform.RotateAround(target.transform.position, new Vector3(-1, 0, -1), 45f);
+                target.transform.RotateAround(target.transform.position, rotateAxis, 45f);
                 ResetMouse();
 
             } else if (pos <= savedPos - rotateThresh) {
 
-                target.transform.RotateAround(target.transform.position, new Vector3(-1, 0, -1), -45f);
+                target.transform.RotateAround(target.transform.position, rotateAxis, -45f);
                 ResetMouse();
 
             }
@@ -88,6 +84,12 @@ public class RotateAction : MonoBehaviour
         ResetMouse();
 
         Debug.Log(target.transform.position - transform.position);
+
+        var xAxis = Mathf.Round(transform.right.x);
+        var yAxis = Mathf.Round(transform.right.y);
+        var zAxis = Mathf.Round(transform.right.z);
+
+        rotateAxis = new Vector3(xAxis, yAxis, zAxis);
 
     }
 
