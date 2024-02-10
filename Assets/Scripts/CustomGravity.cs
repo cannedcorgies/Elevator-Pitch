@@ -27,15 +27,9 @@ public class CustomGravity : MonoBehaviour
         public float correctionScalar = 1f;
 
     [SerializeField] private bool irregular;
-        private bool adjusting;
-            private bool adjustingClick;
-        public float adjustingTime = 0.5f;
-        private float timePassed = 0f;
+        public float irregularDistance = 0.025f;
         private Vector3 newUp;
         private Vector3 oldUp;
-        private Vector3 newForward;
-        private Vector3 oldForward;
-        private Vector3 combinedAxis;
     
     // Start is called before the first frame update
     void Start()
@@ -47,9 +41,6 @@ public class CustomGravity : MonoBehaviour
 
         Debug.Log(-transform.up * (fallMult - 1));
         pullDir = -transform.up;
-
-        adjusting = false;
-        adjustingClick = false;
         
     }
 
@@ -75,7 +66,7 @@ public class CustomGravity : MonoBehaviour
         rb.velocity -= Vector3.Reflect(col.relativeVelocity * bounciness, col.contacts[0].normal);
 
         ContactPoint contact = col.contacts[0];
-        if (!CheckIrregular(col.gameObject.transform.up.normalized) && irregular && !adjusting) {
+        if (!CheckIrregular(col.gameObject.transform.up.normalized) && CheckIrregular(transform.up.normalized)) {
 
             Debug.Log("old forward: " + transform.forward);
 
@@ -111,19 +102,19 @@ public class CustomGravity : MonoBehaviour
 
         var normalMe = Vector3.Normalize(piece);
 
-        if (!Mathf.Approximately(0f, Mathf.Round(normalMe.x))) {
+        if (Mathf.Abs(normalMe.x) > irregularDistance) {
 
             checks ++;
 
         }
 
-        if (!Mathf.Approximately(0f, Mathf.Round(normalMe.y))) {
+        if (Mathf.Abs(normalMe.y) > irregularDistance) {
 
             checks ++;
 
         }
 
-        if (!Mathf.Approximately(0f, Mathf.Round(normalMe.z))) {
+        if (Mathf.Abs(normalMe.z) > irregularDistance) {
 
             checks ++;
 
@@ -156,33 +147,6 @@ public class CustomGravity : MonoBehaviour
         }
 
         return savedIndex;
-
-    }
-
-    void AdjustAxis() {
-
-        if (adjusting) {
-
-            fpc.enabled = false;
-            rb.velocity = Vector3.zero;
-
-            //transform.up = Vector3.Lerp(oldUp, newUp, timePassed/adjustingTime); 
-            //transform.forward = Vector3.Lerp(oldForward, newForward, timePassed/adjustingTime); 
-
-            transform.LookAt(Vector3.Lerp(oldForward, combinedAxis, timePassed/adjustingTime));
-
-            if (timePassed >= adjustingTime) {
-
-                adjusting = false;
-                pullDir = -transform.up;
-                fpc.enabled = true;
-                Debug.Log("-- new up: " + transform.up);
-
-            }
-
-            timePassed += Time.deltaTime;
-
-        }
 
     }
 
