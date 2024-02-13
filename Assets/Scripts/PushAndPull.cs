@@ -214,7 +214,7 @@ public class PushAndPull : MonoBehaviour
 
         movement.enabled = move;
         fpc.enabled = cam;
-        cg.enabled = grav;
+        cg.activated = grav;
         playerCol.enabled = col;
         
         if (!grav) {
@@ -232,7 +232,7 @@ public class PushAndPull : MonoBehaviour
         behaviorActivated = false;
         movement.enabled = true;
         fpc.enabled = true;
-        cg.enabled = true;
+        cg.activated = true;
         playerCol.enabled = true;
 
     }

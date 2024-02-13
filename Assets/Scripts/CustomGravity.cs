@@ -19,6 +19,8 @@ public class CustomGravity : MonoBehaviour
     private GroundCheck gc;
     public GameObject camera;
     private FirstPersonCamera fpc;
+
+    public bool activated;
     
     public float fallMult = 2.5f;
 
@@ -39,6 +41,8 @@ public class CustomGravity : MonoBehaviour
         gc = GetComponent<GroundCheck>();
         fpc = camera.GetComponent<FirstPersonCamera>();
 
+        activated = true;
+
         Debug.Log(-transform.up * (fallMult - 1));
         pullDir = -transform.up;
         
@@ -48,9 +52,13 @@ public class CustomGravity : MonoBehaviour
     void Update()
     {
 
-        if (!gc.grounded) {
+        if (activated) {
 
-            rb.velocity += pullDir * (fallMult - 1) * Time.deltaTime;
+            if (!gc.grounded) {
+
+                rb.velocity += pullDir * (fallMult - 1) * Time.deltaTime;
+
+            }
 
         }
 

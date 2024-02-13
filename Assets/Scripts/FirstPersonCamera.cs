@@ -54,7 +54,7 @@ public class FirstPersonCamera : MonoBehaviour
         // ==== CAMERA VERTICAL ROTATION ====
 
         cameraVerticalRotation -= inputY;
-        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -80f, 80f);
+        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -85f, 85f);
         transform.localEulerAngles = new Vector3 (savedRotation.x + cameraVerticalRotation, transform.localEulerAngles.y, transform.localEulerAngles.z);
 
         // === PLAYER AND CAMERA HORIZONTAL ROTATION ====
