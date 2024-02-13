@@ -281,9 +281,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc78277562c0b7489170df7a380d88a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 0}
   fallMult: 10
   bounciness: 0
   pullDir: {x: 0, y: 0, z: 0}
+  correctionScalar: 1
+  irregular: 0
+  irregularDistance: 0.025
 --- !u!114 &7093248516964842959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,7 +355,6 @@ MonoBehaviour:
   cam: {fileID: 0}
   cameraPivot: {fileID: 9043562116113424867}
   crosshair: {fileID: 0}
-  crosshairImage: {fileID: 0}
   target: {fileID: 0}
 --- !u!114 &3914587300844030071
 MonoBehaviour:
@@ -367,13 +370,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activated: 0
   target: {fileID: 0}
-  sensitivity: 0.75
-  pullForce: 0.25
+  pullForce: 0.01
   gravProximity: 2
   turnProximity: 10
   inProximity: 0
   gravProxRatio: 0.75
   gravBubble: 0
+  drag: 5
+  pullVel: 0
+  pullRatio: 0
+  startPos: {x: 0, y: 0, z: 0}
   distanceTotal: 0
   distanceCurr: 0
   distanceFraction: 0
@@ -396,6 +402,8 @@ MonoBehaviour:
   pap: {fileID: 0}
   target: {fileID: 0}
   rotatePower: 100
+  rotateThresh: 50
+  rotateAxis: {x: 0, y: 0, z: 0}
 --- !u!114 &4870491406745198036
 MonoBehaviour:
   m_ObjectHideFlags: 0
