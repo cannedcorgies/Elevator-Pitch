@@ -590,6 +590,10 @@ PrefabInstance:
       propertyPath: adjustingTime
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 604566563269865018, guid: d29d27b9121430d42b32d7a4a69ebb75, type: 3}
+      propertyPath: correctionScalar
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1065157463346616322, guid: d29d27b9121430d42b32d7a4a69ebb75, type: 3}
       propertyPath: crosshair
       value: 

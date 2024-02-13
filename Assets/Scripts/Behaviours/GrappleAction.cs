@@ -11,8 +11,6 @@ public class GrappleAction : MonoBehaviour
 
     private PushAndPull pap;
 
-    public float sensitivity = 0.75f;
-
     // variables for determining when player shifts gravity towards grapple point
     public float pullForce = 10f;
     public float gravProximity = 2f;
@@ -20,8 +18,12 @@ public class GrappleAction : MonoBehaviour
     public bool inProximity;
     public float gravProxRatio = 0.5f;
         [SerializeField] private float gravBubble;
+    public float drag = 5f;
+    [SerializeField] private float pullVel;
+    [SerializeField] private float pullRatio;
 
     // variables for determining closeness to gravity shift
+    [SerializeField] private Vector3 startPos;
     [SerializeField] private float distanceTotal;
     [SerializeField] private float distanceCurr;
     [SerializeField] private float distanceFraction;
@@ -60,27 +62,25 @@ public class GrappleAction : MonoBehaviour
                 transform.rotation = middleRotation;    // ..start turning
             
             }
+            
 
             // ==== PULLING ACTION
             var move = Input.GetAxis("Mouse Y");
 
-            if (Mathf.Abs(move) > sensitivity) {
+            pullVel += (-move * pullForce);     // you're moving!
 
-                // imma be real with you: i see that the conditionals here lead to the exact same line of code, but
-                //  i don't remember why i separated them; i just remember i had a reason
-                //  but also
-                //  i'm a little bit quirky
-                if (move < 0 && Vector3.Distance(transform.position, target.transform.position) >= gravProximity) {
+            pullRatio += pullVel;       // displace according to velocity
 
-                    transform.position = Vector3.MoveTowards(transform.position, target.transform.position, -move * pullForce);
+            if (pullRatio < 0f) {       // for now, go backwards from starting point
 
-                } else if (move >= 0) {
-
-                    transform.position = Vector3.MoveTowards(transform.position, target.transform.position, -move * pullForce);
-
-                }
+                pullRatio = 0f;
 
             }
+
+            transform.position = Vector3.MoveTowards(startPos, target.transform.position, pullRatio);   // actual movement
+
+            pullVel = Mathf.Lerp(pullVel, 0f, Time.deltaTime * drag);   // pullVel drag
+            
 
             // ==== GRAVITY SHIFTING
             if (distanceCurr <= gravBubble) {   // if within a certain range of grapple point...
@@ -126,6 +126,10 @@ public class GrappleAction : MonoBehaviour
         // first to return to if let go prematurely, second to interpolate to
         savedRotation = transform.rotation;
         targetRotation = target.transform.rotation;
+
+        pullRatio = 0f;
+        pullVel = 0f;
+        startPos = transform.position;
 
         activated = true;
 
