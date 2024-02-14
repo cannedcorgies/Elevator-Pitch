@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Tests/Test02_SampleTutorial.unity
-    guid: 0eb55b3314b7fd541b58fc137d3c5679
+    path: Assets/Scenes/Tutorial/TutorialCollage.unity
+    guid: f008eb4373b966c4e8960b7bbcf7c249
   m_configObjects: {}
