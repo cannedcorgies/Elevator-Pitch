@@ -18,7 +18,6 @@ public class CustomGravity : MonoBehaviour
     private Rigidbody rb;
     private GroundCheck gc;
     public GameObject camera;
-    private FirstPersonCamera fpc;
 
     public bool activated;
     
@@ -39,7 +38,6 @@ public class CustomGravity : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         gc = GetComponent<GroundCheck>();
-        fpc = camera.GetComponent<FirstPersonCamera>();
 
         activated = true;
 
