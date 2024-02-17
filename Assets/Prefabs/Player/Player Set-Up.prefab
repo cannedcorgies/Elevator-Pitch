@@ -282,6 +282,14 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3914587300844030071, guid: d29d27b9121430d42b32d7a4a69ebb75, type: 3}
+      propertyPath: clickOn
+      value: 
+      objectReference: {fileID: 8300000, guid: 5619e10b4d8a02c4ca393cafc8a9b302, type: 3}
+    - target: {fileID: 3914587300844030071, guid: d29d27b9121430d42b32d7a4a69ebb75, type: 3}
+      propertyPath: clickOff
+      value: 
+      objectReference: {fileID: 8300000, guid: 48595d1591ae18e4990102adfd2707be, type: 3}
+    - target: {fileID: 3914587300844030071, guid: d29d27b9121430d42b32d7a4a69ebb75, type: 3}
       propertyPath: gravProximity
       value: 10
       objectReference: {fileID: 0}
@@ -335,7 +343,7 @@ PrefabInstance:
       objectReference: {fileID: 8400000, guid: 4a144a7f794f1c34880e66a71cdf8ce3, type: 2}
     - target: {fileID: 8052562993329502280, guid: d29d27b9121430d42b32d7a4a69ebb75, type: 3}
       propertyPath: moveSpeed
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8998963915622953697, guid: d29d27b9121430d42b32d7a4a69ebb75, type: 3}
       propertyPath: m_Name

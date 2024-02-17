@@ -7,6 +7,14 @@ public class GrappleAction : MonoBehaviour
 
     public bool activated = false;
 
+    public GrapplePoint gp;
+        public float lightScale = 2f;
+        public float savedLight;
+
+    private AudioSource audz;
+        public AudioClip clickOn;
+        public AudioClip clickOff;
+
     public GameObject target;
 
     private PushAndPull pap;
@@ -34,6 +42,8 @@ public class GrappleAction : MonoBehaviour
     {
 
         activated = false;
+
+        audz = GetComponent<AudioSource>();
         
         pap = GetComponent<PushAndPull>();
         cg = GetComponent<CustomGravity>();
@@ -90,6 +100,9 @@ public class GrappleAction : MonoBehaviour
     void OnDisable()
     {
         // wot
+        audz.PlayOneShot(clickOff);
+        gp.lightControl.intensity = savedLight;
+
         if (activated) {
             
             activated = false;      // i'm a stupid coder so of course i set activated to false twice in a row
@@ -100,6 +113,12 @@ public class GrappleAction : MonoBehaviour
 
     void OnEnable()
     {
+
+        gp = target.GetComponent<GrapplePoint>();
+            savedLight = gp.lightControl.intensity;
+            gp.lightControl.intensity *= lightScale;
+
+        audz.PlayOneShot(clickOn);
 
         distanceTotal = Vector3.Distance(target.transform.position, transform.position) - (gravProximity + 5f);
 

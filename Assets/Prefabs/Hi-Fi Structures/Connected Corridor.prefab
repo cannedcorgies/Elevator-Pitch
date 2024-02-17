@@ -118,7 +118,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ea584a12770c88b4d97d9514005258f9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 75410e5052befd14aa98fa658f27bab4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -764,7 +764,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ea584a12770c88b4d97d9514005258f9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 75410e5052befd14aa98fa658f27bab4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1238,7 +1238,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ea584a12770c88b4d97d9514005258f9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 75410e5052befd14aa98fa658f27bab4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1386,9 +1386,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1255982633427224767, guid: f53b352b3e1a8804f91f17b76edb309e, type: 3}
-  - {fileID: 3069082147569485441, guid: f53b352b3e1a8804f91f17b76edb309e, type: 3}
-  - {fileID: 3876542345217667742, guid: f53b352b3e1a8804f91f17b76edb309e, type: 3}
+  - {fileID: 2100000, guid: ec3b44b4aeef8bc48b5eded4a686c776, type: 2}
+  - {fileID: 2100000, guid: 0579cdf81fb7d9e45a495da61459598a, type: 2}
+  - {fileID: 2100000, guid: d74759c72c94d534a84dfe301be00565, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1550,7 +1550,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ea584a12770c88b4d97d9514005258f9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 75410e5052befd14aa98fa658f27bab4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1754,7 +1754,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ea584a12770c88b4d97d9514005258f9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 75410e5052befd14aa98fa658f27bab4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class GrapplePoint : MonoBehaviour
 {
+
+    public GameObject myLight;
+        public Light lightControl;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        lightControl = myLight.GetComponent<Light>();
         
     }
 
