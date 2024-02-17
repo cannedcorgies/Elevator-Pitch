@@ -83,7 +83,7 @@ public class PushAndPull : MonoBehaviour
         // ==== COMPONENT DETECTION ====
 
         RaycastHit hit;
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);    // cast ray from camera
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
 
         if (Physics.Raycast(ray, out hit)) {    // if somethin hit...
 

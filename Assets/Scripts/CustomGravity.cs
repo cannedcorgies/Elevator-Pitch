@@ -72,7 +72,7 @@ public class CustomGravity : MonoBehaviour
         rb.velocity -= Vector3.Reflect(col.relativeVelocity * bounciness, col.contacts[0].normal);
 
         ContactPoint contact = col.contacts[0];
-        if (!CheckIrregular(col.gameObject.transform.up.normalized) && CheckIrregular(transform.up.normalized)) {
+        if (!CheckIrregular(col.gameObject.transform.up.normalized) && CheckIrregular(pullDir.normalized)) {
 
             Debug.Log("old forward: " + transform.forward);
 
