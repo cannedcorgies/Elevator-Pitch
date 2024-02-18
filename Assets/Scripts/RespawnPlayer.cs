@@ -5,6 +5,8 @@ using UnityEngine;
 public class RespawnPlayer : MonoBehaviour
 {
 
+    public int deadLayer;
+
     public GameObject respawnPoint;
     public Camera cam;
         private FirstPersonCamera fpc;
@@ -71,6 +73,16 @@ public class RespawnPlayer : MonoBehaviour
         if (other.tag == "Respawn") {
 
             respawnPoint = other.transform.parent.gameObject;
+
+        }
+
+    }
+
+    void OnCollisionEnter(Collision col) {
+
+        if (col.gameObject.layer == deadLayer) {
+
+            RespawnMe();
 
         }
 
