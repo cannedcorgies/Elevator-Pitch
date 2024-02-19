@@ -24,6 +24,8 @@ public class PushAndPull : MonoBehaviour
         public SlideAction sa;
         public ScaleAction sca;
         public BouncepadAction ba;
+
+        public ElevatorAction ea;
     
     public Camera cam;
         public GameObject cameraPivot;
@@ -56,6 +58,7 @@ public class PushAndPull : MonoBehaviour
         sa = GetComponent<SlideAction>();
         sca = GetComponent<ScaleAction>();
         ba = GetComponent<BouncepadAction>();
+        ea = GetComponent<ElevatorAction>();
 
     }
 
@@ -74,6 +77,7 @@ public class PushAndPull : MonoBehaviour
             sa.enabled = false;
             sca.enabled = false;
             ba.enabled = false;
+            ea.enabled = false;
 
         }
 
@@ -192,6 +196,24 @@ public class PushAndPull : MonoBehaviour
                 behaviorActivated = true;
                 ba.target = target;
                 ba.enabled = true;
+
+            }
+
+        }
+
+        if (hitObject.GetComponent<ElevatorComponent>()) {
+
+            // Debug.Log("WE ARE IN THIS IF STATEMENT FOR ELEVATOR COMPONENT");
+            objectFound = true;
+            target = hitObject;
+
+            if (Input.GetMouseButtonDown(click)) {
+
+                Debug.Log("the button has been clicked");
+
+                behaviorActivated = true;
+                ea.target = target;
+                ea.enabled = true;
 
             }
 
