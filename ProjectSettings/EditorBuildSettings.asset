@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/SpalshScenes/Title.unity
+    guid: e1ff2c5119da8934bb25ae130edf116f
+  - enabled: 1
+    path: Assets/Scenes/SpalshScenes/Controls.unity
+    guid: 2abebcf1ff691ad479855ea5e8bc21b8
+  - enabled: 1
+    path: Assets/Scenes/SpalshScenes/Settings.unity
+    guid: f093723ac53b8444eafc76f5e41ae8a9
+  - enabled: 1
     path: Assets/Scenes/Tutorial/Hi-Fi Tutorial.unity
     guid: d5663571882c7a143b0f559335404f09
   m_configObjects: {}
