@@ -20,13 +20,32 @@ public class Shrink : MonoBehaviour
     void Update()
     {
 
-        if (shrinkActivated) {
+        if (shrinkTarget) {
+            
+            if (shrinkActivated) {
 
-            var currScale = shrinkTarget.transform.localScale.x;
-            var currShrinkFactor = Mathf.Lerp(currScale, shrinkFactor, Time.deltaTime);
-            Debug.Log("curr shrink: " + currShrinkFactor + " -- curr scale: " + currScale);
+                var currScale = shrinkTarget.transform.localScale.x;
+                var currShrinkFactor = Mathf.Lerp(currScale, shrinkFactor, Time.deltaTime);
+                Debug.Log("curr shrink: " + currShrinkFactor + " -- curr scale: " + currScale);
 
-            shrinkTarget.transform.localScale = new Vector3 (currShrinkFactor, currShrinkFactor, currShrinkFactor);
+                shrinkTarget.transform.localScale = new Vector3 (currShrinkFactor, currShrinkFactor, currShrinkFactor);
+
+            } else {
+
+                var currScale = shrinkTarget.transform.localScale.x;
+                var currShrinkFactor = Mathf.Lerp(currScale, 1f, Time.deltaTime);
+                Debug.Log("curr shrink: " + currShrinkFactor + " -- curr scale: " + currScale);
+
+                shrinkTarget.transform.localScale = new Vector3 (currShrinkFactor, currShrinkFactor, currShrinkFactor);
+
+                if (1f - Mathf.Abs(currScale) < 0.01) {
+
+                    shrinkTarget.transform.localScale = new Vector3 (1f, 1f, 1f);
+                    shrinkTarget = null;
+
+                }
+
+            }
 
         }
         
@@ -48,7 +67,7 @@ public class Shrink : MonoBehaviour
         if (col.gameObject.tag == "Player") {
 
             shrinkActivated = false;
-            col.gameObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+            //col.gameObject.transform.localScale = new Vector3 (1f, 1f, 1f);
 
         }
 
