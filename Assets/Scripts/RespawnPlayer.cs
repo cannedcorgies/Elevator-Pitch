@@ -34,6 +34,7 @@ public class RespawnPlayer : MonoBehaviour
     {
         
         if (transform.position.y < respawnDepth && fallDeath) {
+            Debug.Log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
 
             RespawnMe();
 

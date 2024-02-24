@@ -11,6 +11,8 @@ public class PushAndPull : MonoBehaviour
 
     public int click = 1;
 
+    public LayerMask ignoreLayer;
+
     public FirstPersonCamera fpc;
         public Movement movement;
         public CustomGravity cg;
@@ -89,7 +91,7 @@ public class PushAndPull : MonoBehaviour
         RaycastHit hit;
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
 
-        if (Physics.Raycast(ray, out hit)) {    // if somethin hit...
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~ignoreLayer)) {    // if somethin hit...
 
             var hitObject = hit.transform.gameObject;
 
@@ -237,7 +239,8 @@ public class PushAndPull : MonoBehaviour
         movement.enabled = move;
         fpc.enabled = cam;
         cg.activated = grav;
-        playerCol.enabled = col;
+        //playerCol.enabled = col;
+        rb.isKinematic = true;
         
         if (!grav) {
 
@@ -255,7 +258,8 @@ public class PushAndPull : MonoBehaviour
         movement.enabled = true;
         fpc.enabled = true;
         cg.activated = true;
-        playerCol.enabled = true;
+        //playerCol.enabled = true;
+        rb.isKinematic = false;
 
     }
 
