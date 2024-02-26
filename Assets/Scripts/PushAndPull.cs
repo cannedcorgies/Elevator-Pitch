@@ -240,7 +240,7 @@ public class PushAndPull : MonoBehaviour
         fpc.enabled = cam;
         cg.activated = grav;
         //playerCol.enabled = col;
-        rb.isKinematic = true;
+        //rb.isKinematic = true;
         
         if (!grav) {
 
@@ -259,7 +259,7 @@ public class PushAndPull : MonoBehaviour
         fpc.enabled = true;
         cg.activated = true;
         //playerCol.enabled = true;
-        rb.isKinematic = false;
+        //rb.isKinematic = false;
 
     }
 
