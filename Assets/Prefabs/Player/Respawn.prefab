@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4792819618457098453}
   - component: {fileID: 8528384095119117444}
   - component: {fileID: 8023107045564849750}
-  m_Layer: 2
+  m_Layer: 7
   m_Name: Respawn Radius
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2123794895255043872}
-  m_Layer: 2
+  m_Layer: 7
   m_Name: Respawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
