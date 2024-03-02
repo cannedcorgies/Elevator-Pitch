@@ -26,6 +26,8 @@ public class PushAndPull : MonoBehaviour
         public SlideAction sa;
         public ScaleAction sca;
         public BouncepadAction ba;
+        public PullAction pa;
+        public LightAction la;
 
         public ElevatorAction ea;
     
@@ -34,6 +36,8 @@ public class PushAndPull : MonoBehaviour
 
     public GameObject crosshair;
         private Image crosshairImage;
+    public GameObject hand;
+        private Image handImage;
 
     [SerializeField] public GameObject target;
 
@@ -53,6 +57,7 @@ public class PushAndPull : MonoBehaviour
             playerCol = GetComponent<Collider>();
         
         crosshairImage = crosshair.GetComponent<Image>();
+        handImage = hand.GetComponent<Image>();
 
         // all actions possible
         ga = GetComponent<GrappleAction>();
@@ -61,6 +66,8 @@ public class PushAndPull : MonoBehaviour
         sca = GetComponent<ScaleAction>();
         ba = GetComponent<BouncepadAction>();
         ea = GetComponent<ElevatorAction>();
+        pa = GetComponent<PullAction>();
+        la = GetComponent<LightAction>();
 
     }
 
@@ -80,6 +87,8 @@ public class PushAndPull : MonoBehaviour
             sca.enabled = false;
             ba.enabled = false;
             ea.enabled = false;
+            pa.enabled = false;
+            la.enabled = false;
 
         }
 
@@ -101,10 +110,12 @@ public class PushAndPull : MonoBehaviour
             if (behaviorFound) {
 
                 crosshairImage.color = Color.red;
+                hand.SetActive(true);
 
             } else {
 
                 crosshairImage.color = Color.white;
+                hand.SetActive(false);
 
             }
 
@@ -221,6 +232,38 @@ public class PushAndPull : MonoBehaviour
 
         }
 
+        // if bouncepad component found
+        if (hitObject.GetComponent<PullComponent>()) {
+
+            objectFound = true;
+            target = hitObject;
+
+            if (Input.GetMouseButtonDown(click)) {
+
+                behaviorActivated = true;
+                pa.target = target;
+                pa.enabled = true;
+
+            }
+
+        }
+
+        // if bouncepad component found
+        if (hitObject.GetComponent<LightComponent>()) {
+
+            objectFound = true;
+            target = hitObject;
+
+            if (Input.GetMouseButtonDown(click)) {
+
+                behaviorActivated = true;
+                la.target = target;
+                la.enabled = true;
+
+            }
+
+        }
+
 
         // was a behavior found?
         if (objectFound || behaviorActivated) {
@@ -272,6 +315,9 @@ public class PushAndPull : MonoBehaviour
             sa.enabled = false;
             sca.enabled = false;
             ba.enabled = false;
+            ea.enabled = false;
+            pa.enabled = false;
+            la.enabled = false;
             EnableControl();
 
         }

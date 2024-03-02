@@ -17,7 +17,6 @@ public class CustomGravity : MonoBehaviour
 
     private Rigidbody rb;
     private GroundCheck gc;
-    public GameObject camera;
 
     public bool activated;
     
@@ -38,8 +37,6 @@ public class CustomGravity : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         gc = GetComponent<GroundCheck>();
-
-        activated = true;
 
         Debug.Log(-transform.up * (fallMult - 1));
         pullDir = -transform.up;
