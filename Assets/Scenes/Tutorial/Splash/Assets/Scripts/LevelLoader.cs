@@ -8,7 +8,7 @@ public class LevelLoader : MonoBehaviour
 {
     public GameObject loadingScreen;
     public Slider slider;
-    public TMPro.TextMeshProUGUI progressText;
+    public TMP_Text progressText;
 
 
     public void LoadLevel (int sceneIndex) {
@@ -26,7 +26,8 @@ public class LevelLoader : MonoBehaviour
             // progressText = GetComponent<TMPro.TextMeshProUGUI>().text
             progressText.text = progress * 100f + "%";
             // progressText.SetText(progress * 100f + "%");
-            Debug.Log(progressText.text);
+            // Debug.Log(progressText.text);
+            // Debug.Log("progress: " + progress);
             yield return null;
         }
     }
