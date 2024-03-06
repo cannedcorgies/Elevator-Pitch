@@ -22,6 +22,8 @@ public class PushAndPull : MonoBehaviour
     public List<MonoBehaviour> behaviors;
         [SerializeField] private bool behaviorActivated;
         public GrappleAction ga;
+
+        public NormalGrappleAction nga; // new
         public RotateAction ra;
         public SlideAction sa;
         public ScaleAction sca;
@@ -62,6 +64,8 @@ public class PushAndPull : MonoBehaviour
         ba = GetComponent<BouncepadAction>();
         ea = GetComponent<ElevatorAction>();
 
+        nga = GetComponent<NormalGrappleAction>(); // new action
+
     }
 
     // Update is called once per frame
@@ -80,6 +84,8 @@ public class PushAndPull : MonoBehaviour
             sca.enabled = false;
             ba.enabled = false;
             ea.enabled = false;
+
+            nga.enabled = false;
 
         }
 
@@ -134,6 +140,21 @@ public class PushAndPull : MonoBehaviour
                 behaviorActivated = true;
                 ga.target = target;
                 ga.enabled = true;
+
+            }
+
+        }
+
+        if (hitObject.GetComponent<NormalGrapplePoint>()) {
+
+            objectFound = true;
+            target = hitObject;
+
+            if (Input.GetMouseButtonDown(click)) {
+
+                behaviorActivated = true;
+                nga.target = target;
+                nga.enabled = true;
 
             }
 
