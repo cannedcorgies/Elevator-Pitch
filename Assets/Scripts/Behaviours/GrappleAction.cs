@@ -34,6 +34,8 @@ public class GrappleAction : MonoBehaviour
 
     // variables for determining closeness to gravity shift
     [SerializeField] private Vector3 startPos;
+    [SerializeField] private Vector3 targetPos;
+        public float offsetScale = -2f;
     [SerializeField] private float distanceTotal;
         [SerializeField] private float distanceCurr;
 
@@ -73,7 +75,7 @@ public class GrappleAction : MonoBehaviour
 
             }
 
-            transform.position = Vector3.MoveTowards(startPos, target.transform.position, pullRatio);   // actual movement
+            transform.position = Vector3.MoveTowards(startPos, targetPos, pullRatio);   // actual movement
 
             pullVel = Mathf.Lerp(pullVel, 0f, Time.deltaTime * drag);   // pullVel drag
             
@@ -129,6 +131,10 @@ public class GrappleAction : MonoBehaviour
         pullRatio = 0f;
         pullVel = 0f;
         startPos = transform.position;
+
+        var dir = transform.position - pap.target.transform.position;
+            dir = dir.normalized;
+        targetPos = pap.target.transform.position - (dir * offsetScale);
 
         activated = true;
 

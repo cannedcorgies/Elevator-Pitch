@@ -29,6 +29,8 @@ public class PullAction : MonoBehaviour
 
     // variables for determining closeness to gravity shift
     [SerializeField] private Vector3 startPos;
+    [SerializeField] private Vector3 targetPos;
+        public float offsetScale;
     [SerializeField] private float distanceTotal;
         [SerializeField] private float distanceCurr;
 
@@ -62,7 +64,7 @@ public class PullAction : MonoBehaviour
 
             }
 
-            pap.target.transform.position = Vector3.MoveTowards(startPos, transform.position, pullRatio);   // actual movement
+            pap.target.transform.position = Vector3.MoveTowards(startPos, targetPos, pullRatio);   // actual movement
 
             pullVel = Mathf.Lerp(pullVel, 0f, Time.deltaTime * drag);   // pullVel drag
             
@@ -105,6 +107,9 @@ public class PullAction : MonoBehaviour
         pullRatio = 0f;
         pullVel = 0f;
         startPos = pap.target.transform.position;
+        var dir = startPos - transform.position;
+            dir = dir.normalized;
+        targetPos = transform.position - (dir * offsetScale);
 
         var targetCg = pap.target.GetComponent<CustomGravity>();
 
