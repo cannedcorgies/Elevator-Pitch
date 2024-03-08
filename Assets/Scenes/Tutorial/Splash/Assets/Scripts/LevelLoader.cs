@@ -9,6 +9,7 @@ public class LevelLoader : MonoBehaviour
     public GameObject loadingScreen;
     public Slider slider;
     public TMPro.TextMeshProUGUI progressText;
+    public TMPro.TextMeshProUGUI elevatorFloorNum;
 
 
     public void LoadLevel (int sceneIndex) {
@@ -20,14 +21,16 @@ public class LevelLoader : MonoBehaviour
         loadingScreen.SetActive(true);
 
         while (!operation.isDone) {
+
             float progress = Mathf.Clamp01(operation.progress / .9f);
-            // Debug.Log(progress);
-            slider.value = progress;
-            // progressText = GetComponent<TMPro.TextMeshProUGUI>().text
+            // slider.value = progress;
+
+            // updating elevator floor num based on the progress
+            elevatorFloorNum.text = progress * 100f + "%";
+            
             progressText.text = progress * 100f + "%";
-            // progressText.SetText(progress * 100f + "%");
-            Debug.Log(progressText.text);
             yield return null;
         }
+        loadingScreen.SetActive(false);
     }
 }
