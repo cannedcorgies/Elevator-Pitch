@@ -29,8 +29,8 @@ public class Movement : MonoBehaviour
     {
 
         rb.MovePosition(transform.position 
-            + (transform.forward * Input.GetAxis("Vertical") * moveSpeed) 
-            + (transform.right * Input.GetAxis("Horizontal") * moveSpeed));
+            + (transform.forward * dir.z * moveSpeed) 
+            + (transform.right * dir.x * moveSpeed));
 
 
         //rb.velocity = dir * moveSpeed;

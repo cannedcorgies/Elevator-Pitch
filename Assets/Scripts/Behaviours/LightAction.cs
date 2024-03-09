@@ -37,8 +37,9 @@ public class LightAction : MonoBehaviour
             
             // ==== PULLING ACTION
             var move = Input.GetAxis("Mouse Y");
+                var push = pullForce * pap.pushPullScale;
 
-            pullVel += (-move * pullForce);     // you're moving!
+            pullVel += (-move * push);     // you're moving!
 
             light.maxIntensity += pullVel;
             light.minIntensity += pullVel;

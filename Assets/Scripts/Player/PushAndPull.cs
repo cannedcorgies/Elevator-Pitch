@@ -9,6 +9,8 @@ public class PushAndPull : MonoBehaviour
     public bool activated;
         public bool imHere;
 
+    public float pushPullScale = 1f;
+
     public int click = 1;
 
     public LayerMask ignoreLayer;
@@ -282,8 +284,6 @@ public class PushAndPull : MonoBehaviour
         movement.enabled = move;
         fpc.enabled = cam;
         cg.activated = grav;
-        //playerCol.enabled = col;
-        //rb.isKinematic = true;
         
         if (!grav) {
 

@@ -26,17 +26,19 @@ public class ElevatorAction : MonoBehaviour
     {
         var move = Input.GetAxis("Mouse Y");
 
+        var push = sens * pap.pushPullScale;
+
         if (activated) {
              // if mouse is being pulled down then rotate the lever accordingly
              if (move < 0) {
                 // rotate based on mouse pulling
-                target.transform.Rotate(0, 0, sens * Time.deltaTime);
+                target.transform.Rotate(0, 0, push * Time.deltaTime);
              }
              // if mouse is being pushed move the lever up
              else if (move > 0) {
                 // rotate based on mouse pulling
                 // in this case invert the movement so it goes up instead of down
-                target.transform.Rotate(0, 0, -sens * Time.deltaTime);
+                target.transform.Rotate(0, 0, -push * Time.deltaTime);
              }
 
             // clamp the rotation to a certain range so it doesnt pass a certain range
