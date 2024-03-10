@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
+    public static int test = 5;
     // [SerializeField] private Slider brightnessSlider;
     // [SerializeField] private Image overLay;
 
@@ -17,6 +18,8 @@ public class SettingsMenu : MonoBehaviour
             SetMusicVolume(0.62f);
             SetSFXVolume(0.62f);
         }
+        // SetMusicVolume(PlayerPrefs.GetFloat("music"));
+        // SetSFXVolume(PlayerPrefs.GetFloat("sfx"));
     }
 
     public void SetMusicVolume (float volume) {
