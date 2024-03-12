@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrappleAction : MonoBehaviour
+public class PullAction : MonoBehaviour
 {
-
     public bool activated = false;
 
     public GrapplePoint gp;
@@ -22,20 +21,16 @@ public class GrappleAction : MonoBehaviour
 
     private Vector3 savedPullDir;
 
-    // variables for determining when player shifts gravity towards grapple point
-    public float pullForce = 10f;
-    public float gravProximity = 2f;
-    public bool inProximity;
-
     //variables for sliding in/out
     public float drag = 5f;
+    public float pullForce = 10f;
     [SerializeField] private float pullVel;
     [SerializeField] private float pullRatio;
 
     // variables for determining closeness to gravity shift
     [SerializeField] private Vector3 startPos;
     [SerializeField] private Vector3 targetPos;
-        public float offsetScale = -2f;
+        public float offsetScale;
     [SerializeField] private float distanceTotal;
         [SerializeField] private float distanceCurr;
 
@@ -45,10 +40,7 @@ public class GrappleAction : MonoBehaviour
 
         activated = false;
 
-        audz = GetComponent<AudioSource>();
-        
         pap = GetComponent<PushAndPull>();
-        cg = GetComponent<CustomGravity>();
 
     }
 
@@ -59,9 +51,6 @@ public class GrappleAction : MonoBehaviour
         if (activated) {
             
             
-            distanceCurr = Vector3.Distance(target.transform.position, transform.position);  // get current distance to point before you start turning
-            
-
             // ==== PULLING ACTION
             var move = Input.GetAxis("Mouse Y");
                 var push = pullForce * pap.pushPullScale;
@@ -76,25 +65,10 @@ public class GrappleAction : MonoBehaviour
 
             }
 
-            transform.position = Vector3.MoveTowards(startPos, targetPos, pullRatio);   // actual movement
+            pap.target.transform.position = Vector3.MoveTowards(startPos, targetPos, pullRatio);   // actual movement
 
             pullVel = Mathf.Lerp(pullVel, 0f, Time.deltaTime * drag);   // pullVel drag
             
-
-            // ==== GRAVITY SHIFTING
-            if (distanceCurr <= gravProximity) {   // if within a certain range of grapple point...
-
-                Debug.Log("IN!");
-
-                inProximity = true;     // ..gravity change
-                cg.pullDir = -target.transform.up;
-
-            } else {
-
-                inProximity = false;
-                cg.pullDir = savedPullDir;
-
-            }
 
         }
 
@@ -103,10 +77,22 @@ public class GrappleAction : MonoBehaviour
     void OnDisable()
     {
         // wot
-        audz.PlayOneShot(clickOff);
-        gp.lightControl.intensity = savedLight;
-
         if (activated) {
+
+            var targetCg = pap.target.GetComponent<CustomGravity>();
+
+            if (targetCg) {
+
+                targetCg.activated = true;
+
+            }
+
+            var targetRb = pap.target.GetComponent<Rigidbody>();
+            if (targetRb) {
+
+                targetRb.isKinematic = false;
+
+            }
             
             activated = false;      // i'm a stupid coder so of course i set activated to false twice in a row
 
@@ -117,28 +103,31 @@ public class GrappleAction : MonoBehaviour
     void OnEnable()
     {
 
-        gp = target.GetComponent<GrapplePoint>();
-            savedLight = gp.lightControl.intensity;
-            gp.lightControl.intensity *= lightScale;
-
-        audz.PlayOneShot(clickOn);
-
-        distanceTotal = Vector3.Distance(target.transform.position, transform.position) - (gravProximity + 5f);
-
-        savedPullDir = cg.pullDir;
-
         pap.DisableControl(false, false, false);
         
         pullRatio = 0f;
         pullVel = 0f;
-        startPos = transform.position;
-
-        var dir = transform.position - pap.target.transform.position;
+        startPos = pap.target.transform.position;
+        var dir = startPos - transform.position;
             dir = dir.normalized;
-        targetPos = pap.target.transform.position - (dir * offsetScale);
+        targetPos = transform.position - (dir * offsetScale);
+
+        var targetCg = pap.target.GetComponent<CustomGravity>();
+
+        if (targetCg) {
+
+            targetCg.activated = false;
+
+        }
+
+        var targetRb = pap.target.GetComponent<Rigidbody>();
+        if (targetRb) {
+
+            targetRb.isKinematic = true;
+
+        }
 
         activated = true;
 
     }
-
 }

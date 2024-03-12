@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     private Rigidbody rb;
     
     public float moveSpeed = 300f;
+    public Vector3 dir;
     
     // Start is called before the first frame update
     void Start()
@@ -18,14 +19,23 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() {
+
+        dir = new Vector3(Input.GetAxis("Horizontal"), rb.velocity.y, Input.GetAxis("Vertical")).normalized;
+
+    }
+
+    void FixedUpdate()
     {
-        
-        var dir = new Vector3(Input.GetAxis("Horizontal"), 0 , Input.GetAxis("Vertical")).normalized;
 
         rb.MovePosition(transform.position 
-            + (transform.forward * Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime) 
-            + (transform.right * Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime));
+            + (transform.forward * dir.z * moveSpeed) 
+            + (transform.right * dir.x * moveSpeed));
+
+
+        //rb.velocity = dir * moveSpeed;
+
+        //rb.AddForce(dir * moveSpeed);
 
     }
 

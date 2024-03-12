@@ -40,6 +40,8 @@ public class CentralCollisionManager : MonoBehaviour
         }
     }
 
+    // if true is passed in we open the doors
+    // if false is passed in then we close the doors
     private void MoveDoors(bool openOrClose) {
         // how much to move the door each frame
         float step = moveSpeed * Time.deltaTime;
@@ -47,14 +49,18 @@ public class CentralCollisionManager : MonoBehaviour
 
         if (openOrClose) {
             if (Vector3.Distance(door1.position, door1StartPosition) < maxOpenDistance) {
+                // Debug.Log("opening the doors slowly");
                 door1.position += new Vector3(step, 0, 0);
                 door2.position -= new Vector3(step, 0, 0);
             } else {
+                // Debug.Log("doors are fully open and shouldClosedoors is true....");
                 doorsFullyOpened = true;
                 shouldOpenDoors = false;
-                shouldCloseDoors = true;
+                // shouldCloseDoors = true;
             }
-        } else if (!openOrClose && doorsFullyOpened) {
+
+        // close the doors
+        } else if (!openOrClose && shouldCloseDoors) {
             if (door1.position != door1StartPosition) {
                 door1.position = Vector3.MoveTowards(door1.position, door1StartPosition, step);
             }
@@ -75,7 +81,7 @@ public class CentralCollisionManager : MonoBehaviour
     {
         Debug.Log("somethin entered");
         if (gameObject.name == "TriggerCube" && other.gameObject.name == "Lever") {
-            Debug.Log("In here");
+            Debug.Log("trigger cube activated");
             shouldOpenDoors = true;
             shouldCloseDoors = false;
         }
