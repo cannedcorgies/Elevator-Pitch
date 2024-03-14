@@ -8,6 +8,7 @@ public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public static int test = 5;
+    // public static bool grayscale = false;
     // [SerializeField] private Slider brightnessSlider;
     // [SerializeField] private Image overLay;
 
@@ -17,6 +18,7 @@ public class SettingsMenu : MonoBehaviour
         } else {
             SetMusicVolume(0.62f);
             SetSFXVolume(0.62f);
+            // SetGrayScale(false);
         }
         // SetMusicVolume(PlayerPrefs.GetFloat("music"));
         // SetSFXVolume(PlayerPrefs.GetFloat("sfx"));
@@ -32,6 +34,13 @@ public class SettingsMenu : MonoBehaviour
         // Debug.Log(volume);
         audioMixer.SetFloat("sfx", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("sfx", volume);
+    }
+
+    public void SetGrayScale (float grayscale) {
+        // Debug.Log(volume);
+        // audioMixer.SetFloat("music", Mathf.Log10(volume) * 20);
+        // PlayerPrefs.SetFloat("grayscale", grayscale);
+        Debug.Log(grayscale);
     }
 
     // public void SetBrightness (float alpha) {

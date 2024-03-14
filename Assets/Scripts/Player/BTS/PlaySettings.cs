@@ -27,13 +27,16 @@ public class PlaySettings : MonoBehaviour
             savedSaturation = ca.saturation.value;
 
         savedCamSensitivity = fpc.mouseSensitivity;
+        Debug.Log("grayscale: " + grayscale);
+        Debug.Log("grayscalepref: " + PlayerPrefs.GetInt("grayscale"));
+        grayscale = PlayerPrefs.GetInt("grayscale") == 1 ? true : false;
     
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        // Debug.Log("grayscale1: " + grayscale);
         if (grayscale) {
 
             ca.saturation.value = -100f;

@@ -30,6 +30,8 @@ public class ToggleSwitch : MonoBehaviour
         if (toggle.isOn) {
             OnSwitch(true);
         }
+        // PlayerPrefs.SetInt("grayscale", (toggle.isOn ? 1 : 0));
+        // Debug.Log("toggle switch: " + PlayerPrefs.GetInt("grayscale"));
     }
 
     void OnSwitch(bool on) {
@@ -37,6 +39,9 @@ public class ToggleSwitch : MonoBehaviour
         handleRectTransform.DOAnchorPos(on ? handlePosition * -1 : handlePosition, .4f).SetEase(Ease.InOutBack);
         // bgImage.color = on ? bgActiveColor : bgDefaultColor;
         bgImage.DOColor(on ? bgActiveColor : bgDefaultColor, .6f);
+        PlayerPrefs.SetInt("grayscale", (on ? 1 : 0));
+        // Debug.Log(on);
+        // PlayerPrefs.SetInt("grayscale", (on ? 1 : 0));
         // handleImage.color = on ? handleActiveColor : handleDefaultColor;
         // Debug.Log(bgImage.color);
     }
