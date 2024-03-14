@@ -14,6 +14,10 @@ public class ToggleSwitch : MonoBehaviour
     Toggle toggle;
     Vector2 handlePosition;
 
+    public void Start() {
+        PlayerPrefs.SetInt("grayscale", 0);
+    }
+
     void Awake() {
         toggle = GetComponent<Toggle>();
         handlePosition = handleRectTransform.anchoredPosition;
@@ -30,7 +34,6 @@ public class ToggleSwitch : MonoBehaviour
         if (toggle.isOn) {
             OnSwitch(true);
         }
-        // PlayerPrefs.SetInt("grayscale", (toggle.isOn ? 1 : 0));
         // Debug.Log("toggle switch: " + PlayerPrefs.GetInt("grayscale"));
     }
 
@@ -40,10 +43,6 @@ public class ToggleSwitch : MonoBehaviour
         // bgImage.color = on ? bgActiveColor : bgDefaultColor;
         bgImage.DOColor(on ? bgActiveColor : bgDefaultColor, .6f);
         PlayerPrefs.SetInt("grayscale", (on ? 1 : 0));
-        // Debug.Log(on);
-        // PlayerPrefs.SetInt("grayscale", (on ? 1 : 0));
-        // handleImage.color = on ? handleActiveColor : handleDefaultColor;
-        // Debug.Log(bgImage.color);
     }
 
     void OnDestroy() {

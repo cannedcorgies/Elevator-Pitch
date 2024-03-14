@@ -14,11 +14,27 @@ public class SettingsMenu : MonoBehaviour
 
     public void Start() {
         if (PlayerPrefs.HasKey("music")) {
-            LoadVolume();
+            SetMusicVolume(PlayerPrefs.GetFloat("music"));
         } else {
             SetMusicVolume(0.62f);
+        }
+
+        if (PlayerPrefs.HasKey("sfx")) {
+            SetSFXVolume(PlayerPrefs.GetFloat("sfx"));
+        } else {
             SetSFXVolume(0.62f);
-            // SetGrayScale(false);
+        }
+
+        if (PlayerPrefs.HasKey("controls")) {
+            SetControlsSensitivity(PlayerPrefs.GetFloat("controls"));
+        } else {
+            SetControlsSensitivity(1f);
+        }
+
+        if (PlayerPrefs.HasKey("camera")) {
+            SetCameraSensitivity(PlayerPrefs.GetFloat("camera"));
+        } else {
+            SetCameraSensitivity(1f);
         }
         // SetMusicVolume(PlayerPrefs.GetFloat("music"));
         // SetSFXVolume(PlayerPrefs.GetFloat("sfx"));
@@ -36,11 +52,12 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("sfx", volume);
     }
 
-    public void SetGrayScale (float grayscale) {
-        // Debug.Log(volume);
-        // audioMixer.SetFloat("music", Mathf.Log10(volume) * 20);
-        // PlayerPrefs.SetFloat("grayscale", grayscale);
-        Debug.Log(grayscale);
+    public void SetControlsSensitivity (float sens) {
+        PlayerPrefs.SetFloat("controls", sens);
+    }
+
+    public void SetCameraSensitivity (float sens) {
+        PlayerPrefs.SetFloat("camera", sens);
     }
 
     // public void SetBrightness (float alpha) {
