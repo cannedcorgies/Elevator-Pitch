@@ -49,11 +49,7 @@ public class CustomGravity : MonoBehaviour
 
         if (activated) {
 
-            if (!gc.grounded) {
-
-                rb.velocity += pullDir * (fallMult - 1) * Time.deltaTime;
-
-            }
+            rb.velocity += pullDir * (fallMult - 1) * Time.deltaTime;
 
         }
 
