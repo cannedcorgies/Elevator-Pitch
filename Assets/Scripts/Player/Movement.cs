@@ -21,6 +21,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update() {
 
+        Debug.Log(Input.mousePosition.ToString());
+
         dir = new Vector3(Input.GetAxis("Horizontal"), rb.velocity.y, Input.GetAxis("Vertical")).normalized;
 
     }
