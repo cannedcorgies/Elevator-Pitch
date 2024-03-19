@@ -52,15 +52,16 @@ public class FirstPersonCamera : MonoBehaviour
         float inputY = Input.GetAxis("Mouse Y")*mouseSensitivity;
 
         // ==== CAMERA VERTICAL ROTATION ====
+        //pauses camera movement when game is paused
+        if (!PauseMenu.GamePaused){
+            cameraVerticalRotation -= inputY;
+            cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -85f, 85f);
+            transform.localEulerAngles = new Vector3 (savedRotation.x + cameraVerticalRotation, transform.localEulerAngles.y, transform.localEulerAngles.z);
 
-        cameraVerticalRotation -= inputY;
-        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -85f, 85f);
-        transform.localEulerAngles = new Vector3 (savedRotation.x + cameraVerticalRotation, transform.localEulerAngles.y, transform.localEulerAngles.z);
+            // === PLAYER AND CAMERA HORIZONTAL ROTATION ====
 
-        // === PLAYER AND CAMERA HORIZONTAL ROTATION ====
-
-        player.transform.RotateAround(player.transform.position, player.transform.up, inputX);
-       
+            player.transform.RotateAround(player.transform.position, player.transform.up, inputX);
+        }       
     }
 
     // ==== reset turning axis
